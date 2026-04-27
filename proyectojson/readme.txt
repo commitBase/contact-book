@@ -1,0 +1,1 @@
+En este proyecto se realizará una agenda virtual "Sencilla"
