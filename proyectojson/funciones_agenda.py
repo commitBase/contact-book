@@ -1,24 +1,30 @@
 # Variables
 contactos = {}
-flag = True
+
 
 def menu():
-    while flag != False:
+    flag = True
+    while flag == True:
         print("\nAGENDA VIRTUAL")
         print("1. Agregar contactos")
         print("2. Ver contactos")
         print("3. Buscar contactos")
         print("4. Eliminar contactos")
         print("5. Salir")
-
+        
         select = input("Seleccione opcion 1-5.\n")
-
+        
         if select == "1":
             agregar()
         elif select == "2":
             ver()
         elif select == "3":
             find()
+        elif select == "4":
+            delete()
+        elif select == "5":
+            flag = False
+
 
 def agregar():
     print("\nUsted ha seleccionado agregar usuario: \n")
@@ -39,7 +45,7 @@ def ver():
             # Para acceder a la key, que en este caso es el nombre, basta con colocar {nombre}
             # Para acceder a los datos se debe {datos} y además especificar que valor quiero, en este caso se incluye ente [] la key: {datos['Teléfono']}
             # Este método se llama Iteración sobre pares Llave-Valor
-            print(f"{i}. Nombre: {nombre}")
+            print(f"{i}.\nNombre: {nombre}")
             print(f"Number: {datos['Teléfono']}")
             print(f"Email: {datos['Email']}")
     except NameError:
@@ -52,3 +58,17 @@ def find():
         print(f"Tu contacto {nameInput} lo guardaste como: \n{contactos[nameInput]}")
     except NameError:
         print("La persona no existe en los datos guardados")
+
+def delete():
+    print("\nHas seleccionado eliminar contacto.\nIndica a quien quieres borrar")
+    for i, (nombre) in enumerate(contactos, start=1):
+        print(f"{i}. Nombre: {nombre}")
+    
+    try:
+        deleteInput = input()
+        pregunta = input("Estás seguro de elimnarlo? \n1. Sí   2. No")
+        if pregunta == "1":
+            del contactos[f"{deleteInput}"]
+            print("Contacto eliminado")
+    except:
+        print("Usuario no existe")
